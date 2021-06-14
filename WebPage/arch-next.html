@@ -1,0 +1,26 @@
+<div style="text-align: center; margin-top: 50px">
+  <h1>HELLO ARCH NEXT!</h1>
+  <br />
+  COUNTER: <span id="counter"></span>
+  <br />
+  <button onclick="increase()">INCREASE</button>
+
+  <script>
+    const baseUrl = "https://durable-entities-demo.azurewebsites.net/api";
+    document.getElementById("counter").innerText = "Fetching counter...";
+
+    setInterval(() => {
+      fetch(`${baseUrl}/counter`).then((response) => {
+        response
+          .json()
+          .then(
+            (value) => (document.getElementById("counter").innerText = value)
+          );
+      });
+    }, 3000);
+
+    function increase() {
+      fetch(`${baseUrl}/counter`, { method: "POST" });
+    }
+  </script>
+</div>
